@@ -41,10 +41,10 @@ bool operator()(const T *const D, T *residual) const {
 private:
 const double _the, _time;
 };
-const double true_A = 1.785;
-    const double true_w = 0.884;
-    const double true_phi = 1.24;
-    const double true_B = 0.305;
+const double true_A = 0.785;
+    const double true_w = 1.884;
+    const double true_phi = 0.24;
+    const double true_B = 1.305;
 
 int main()
 {std::vector<double> timings;
@@ -60,7 +60,7 @@ int main()
     
 Mat targetR = imread("../image/R.png", IMREAD_GRAYSCALE);
 Mat targetHammer = imread("../image/target.png", IMREAD_GRAYSCALE);
-double D[4]={2.305,1.785,2.884,1.24};
+double D[4]={0.305,1.785,0.884,1.24};
 int oringin = 0;ceres::Problem problem;
     while(1)
     {   
