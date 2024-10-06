@@ -34,7 +34,7 @@ bool operator()(const T *const D, T *residual) const {
 
 
 
-    residual[0] = cos(B * T(_time) + (A / w) * (ceres::cos(phi + T(1.57))-ceres::cos(w * (T(_time)) + phi + T(1.57)))) - T(_the);
+    residual[0] = cos(B * T(_time) - (A / w) * (ceres::sin(phi )-ceres::sin(w * (T(_time)) + phi ))) - T(_the);
     return true;
   }
 
@@ -112,14 +112,14 @@ int oringin = 0;ceres::Problem problem;
           ceres::Solver::Options options;
       options.max_num_iterations = 1000;
       options.linear_solver_type = ceres::DENSE_QR;
-        problem.SetParameterLowerBound(D, 0, 0.5);
-        problem.SetParameterUpperBound(D, 0, 5.0);
+        problem.SetParameterLowerBound(D, 0, 1);
+        problem.SetParameterUpperBound(D, 0, 1.5);
         problem.SetParameterLowerBound(D, 1, 0.5);
-        problem.SetParameterUpperBound(D, 1, 5.0);
-        problem.SetParameterLowerBound(D, 2, 1.0);
-        problem.SetParameterUpperBound(D, 2, 5.0);
+        problem.SetParameterUpperBound(D, 1, 1);
+        problem.SetParameterLowerBound(D, 2, 1.5);
+        problem.SetParameterUpperBound(D, 2, 2);
         problem.SetParameterLowerBound(D, 3, 0.2);
-        problem.SetParameterUpperBound(D, 3, 2.0);
+        problem.SetParameterUpperBound(D, 3, 0.5);
         ceres::Solver::Summary summary;
         ceres::Solve(options,&problem,&summary);
 
